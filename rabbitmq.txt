@@ -1,0 +1,28 @@
+rabbitmq 安装（centos7及以上）
+所有命令均在root用户下进行，如没有，在命令前加 sudo
+1.下载rabbitmq rpm安装包
+url：https://www.rabbitmq.com/install-rpm.html#downloads
+2.下载erlang rpm 安装包
+url：https://github.com/rabbitmq/erlang-rpm/releases  #git地址，下载速度较慢
+3.rabbitmq 和 erlang 版本对应图
+url：https://www.rabbitmq.com/which-erlang.html
+4.将上传的文件上传到linux服务器上
+5.先安装erlang
+rpm -ivh erlang 安装包
+再安装rabbitmq
+rpm -ivh rabbitmq 安装包
+6.rabbitmq 状态查看 启动 重启 
+systemctl status rabbitmq-server #查看状态
+systemctl start rabbitmq-server  #启动
+systemctl stop rabbitmq-server	#停止
+systemctl restart rabbitmq-server #重启
+7.将rabbitmq添加到开机自启
+systemctl enable rabbitmq-server
+8.添加用户和权限 
+rabbitmqctl add_user user(用户名) password （密码）#设置用户名和密码
+rabbitmqctl set_user_tags user（用户名） administrator（权限）#添加权限
+
+rabbitmq默认用户名和密码guest，guest 3.0之后只能在本地访问
+
+9.开启rabbitmq网页模式
+rabbitmq-plugins enable rabbitmq_management
